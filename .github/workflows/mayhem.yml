@@ -7,10 +7,10 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  i8_MAYHEMFILE: i8.mayhemfile
-  i128_MAYHEMFILE: i128.mayhemfile
-  u8_MAYHEMFILE: u8.mayhemfile
-  u16_MAYHEMFILE: u16.mayhemfile
+  i8_MAYHEMFILE: Mayhem/i8.mayhemfile
+  i128_MAYHEMFILE: Mayhem/i128.mayhemfile
+  u8_MAYHEMFILE: Mayhem/u8.mayhemfile
+  u16_MAYHEMFILE: Mayhem/u16.mayhemfile
 
 
 jobs:
@@ -50,13 +50,35 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Start analysis
+      - name: Start analysis for i8
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.i8_MAYHEMFILE }}
           sarif-output: sarif
-
+          
+      - name: Start analysis for i128
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.i128_MAYHEMFILE }}
+          sarif-output: sarif
+          
+      - name: Start analysis for u8
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.u8_MAYHEMFILE }}
+          sarif-output: sarif
+          
+      - name: Start analysis for u16
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.u16_MAYHEMFILE }}
+          sarif-output: sarif
+      
+      
       - name: Upload SARIF file(s)
         uses: github/codeql-action/upload-sarif@v1
         with:
