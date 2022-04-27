@@ -2,7 +2,7 @@
 project: subtle
 
 # Target name (should be unique within the project)
-target: subtle
+target: i8
 
 # Base image to run the binary in.
 # image: ghcr.io/prateekvishnu/subtle:latest
