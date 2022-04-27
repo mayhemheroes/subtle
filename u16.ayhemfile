@@ -5,16 +5,13 @@ project: subtle
 target: subtle
 
 # Base image to run the binary in.
-image: ghcr.io/prateekvishnu/subtle:latest
+# image: ghcr.io/prateekvishnu/subtle:latest
 
 # List of commands used to test the target
 cmds:
 
     # Command used to start the target, "@@" is the input file
     # (when "@@" is omitted Mayhem defaults to stdin inputs)
-    - cmd: /conditional_assign_i8
-    - cmd: /conditional_assign_i128
-    - cmd: /conditional_assign_u8
     - cmd: /conditional_assign_u16
  
 

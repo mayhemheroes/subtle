@@ -7,6 +7,11 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  i8_MAYHEMFILE: i8.mayhemfile
+  i128_MAYHEMFILE: i128.mayhemfile
+  u8_MAYHEMFILE: u8.mayhemfile
+  u16_MAYHEMFILE: u16.mayhemfile
+
 
 jobs:
   build:
